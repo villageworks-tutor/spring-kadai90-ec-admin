@@ -32,12 +32,22 @@ public class Item {
 	 * @param categoryId
 	 * @param name
 	 * @param price
-	 * @param quantity
 	 */
-	public Item(Integer categoryId, String name, Integer price, Integer quantity) {
+	public Item(Integer categoryId, String name, Integer price) {
 		this.categoryId = categoryId;
 		this.name = name;
 		this.price = price;
+	}
+
+	/**
+	 * コンストラクタ
+	 * @param categoryId
+	 * @param name
+	 * @param price
+	 * @param quantity
+	 */
+	public Item(Integer categoryId, String name, Integer price, Integer quantity) {
+		this(categoryId, name, price);
 		this.quantity = quantity;
 	}
 	
