@@ -26,7 +26,7 @@
 						</form>
 					</td>
 					<td>
-						<form action="" method="">
+						<form th:action="'/admin/categories/' + ${category.id} + '/delete'" method="post">
 							<button>削除</button>
 						</form>
 					</td>

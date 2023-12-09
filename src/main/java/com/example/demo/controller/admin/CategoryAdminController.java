@@ -74,4 +74,13 @@ public class CategoryAdminController {
 		return "redirect:/admin/categories";
 	}
 	
+	// カテゴリー削除処理
+	@PostMapping("/admin/categories/{id}/delete")
+	public String delete(@PathVariable("id") Integer id) {
+		// カテゴリー削除
+		categoryRepository.deleteById(id);
+		// 画面遷移
+		return "redirect:/admin/categories";
+	}
+	
 }
