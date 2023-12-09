@@ -21,7 +21,7 @@
 					<td th:text="${category.id}"></td>
 					<td th:text="${category.name}"></td>
 					<td>
-						<form action="" method="">
+						<form th:action="'/admin/categories/' + ${category.id} + '/edit'" method="get">
 							<button>更新</button>
 						</form>
 					</td>

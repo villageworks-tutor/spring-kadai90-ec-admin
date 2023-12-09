@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,6 +42,32 @@ public class CategoryAdminController {
 	public String store(@RequestParam("name") String name) {
 		// リクエストパラメータをもとにカテゴリーインスタンスを生成
 		Category category = new Category(name);
+		// 生成したカテゴリーインスタンスを永続化
+		categoryRepository.save(category);
+		// 画面遷移
+		return "redirect:/admin/categories";
+	}
+	
+	// カテゴリー更新画面表示
+	@GetMapping("/admin/categories/{id}/edit")
+	public String edit(
+			@PathVariable("id") Integer id,
+			Model model) {
+		// カテゴリーインスタンスを取得
+		Category category = categoryRepository.findById(id).get();
+		// 取得したカテゴリーインスタンスをスコープに登録
+		model.addAttribute("category", category);
+		// 画面遷移
+		return "admin/editCategory";
+	}
+	
+	// カテゴリー登録処理
+	@PostMapping("/admin/categories/{id}/edit")
+	public String update(
+			@PathVariable("id") Integer id,
+			@RequestParam("name") String name) {
+		// パスパラメータとリクエストパラメータをもとにカテゴリーインスタンスを生成
+		Category category = new Category(id, name);
 		// 生成したカテゴリーインスタンスを永続化
 		categoryRepository.save(category);
 		// 画面遷移
