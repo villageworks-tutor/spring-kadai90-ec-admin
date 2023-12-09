@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -65,6 +66,38 @@ public class ItemAdminController {
 		// リクエストパラメータをもとに商品インスタンスを生成
 		Item item = new Item(categoryId, name, price);
 		// 取得した商品インスタンスを永続化
+		itemRepository.save(item);
+		// 画面遷移
+		return "redirect:/admin/items";
+	}
+	
+	// 商品更新画面表示
+	@GetMapping("/admin/items/{id}/edit")
+	public String edit(
+			@PathVariable("id") Integer itemId,
+			Model model) {
+		// すべてのカテゴリーを取得
+		List<Category> categoryList = categoryRepository.findAll();
+		// 取得したカテゴリーリストをスコープに登録
+		model.addAttribute("categoryList", categoryList);
+		// パスパラメータをもとに商品インスタンスを取得
+		Item item = itemRepository.findById(itemId).get();
+		// 取得した商品にスタンスをスコープに登録
+		model.addAttribute("item", item);
+		// 画面遷移
+		return "admin/editItem";
+	}
+	
+	// 商品更新処理
+	@PostMapping("/admin/items/{id}/edit")
+	public String update(
+			@RequestParam("id") Integer id,
+			@RequestParam("categoryId") Integer categoryId,
+			@RequestParam("name") String name,
+			@RequestParam("price") Integer price) {
+		// リクエストパラメータをもとに商品インスタンスを生成
+		Item item = new Item(id, categoryId, name, price);
+		// 取得した商品スタンスを永続化
 		itemRepository.save(item);
 		// 画面遷移
 		return "redirect:/admin/items";
