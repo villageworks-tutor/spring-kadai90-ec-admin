@@ -14,9 +14,23 @@ public class Category {
 	private Integer id;
 	private String name;
 	
+	/**
+	 * デフォルトコンストラクタ
+	 */
+	public Category() {}
+	
+	/**
+	 * コンストラクタ
+	 * @param name
+	 */
+	public Category(String name) {
+		this.name = name;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
+	
 	public String getName() {
 		return name;
 	}
