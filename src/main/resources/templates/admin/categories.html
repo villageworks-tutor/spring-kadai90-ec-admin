@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.Thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>カテゴリー一覧</title>
+</head>
+<body>
+	<header>
+		<h1>カテゴリー一覧</h1>
+	</header>
+	<main>
+		<article>
+			<table border="1">
+				<tr>
+					<th>ID</th>
+					<th>カテゴリー名</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr th:each="category:${categoryList}">
+					<td th:text="${category.id}"></td>
+					<td th:text="${category.name}"></td>
+					<td>
+						<form action="" method="">
+							<button>更新</button>
+						</form>
+					</td>
+					<td>
+						<form action="" method="">
+							<button>削除</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+			<a href="/admin/category/add">新規登録</a>
+			<br />
+			<a href="/admin/items">商品管理</a>
+		</article>
+	</main>
+</body>
+</html>
