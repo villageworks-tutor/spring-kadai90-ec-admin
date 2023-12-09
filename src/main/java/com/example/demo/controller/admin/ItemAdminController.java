@@ -103,4 +103,14 @@ public class ItemAdminController {
 		return "redirect:/admin/items";
 	}
 	
+	// 商品削除処理
+	@PostMapping("/admin/items/{id}/delete")
+	public String delete(@PathVariable("id") Integer id) {
+		// TODO: ItemReposiory#deleteById(Innteger)とItemReposiory#delete(Item)の違いを調べてみよう！
+		// 商品を削除
+		itemRepository.deleteById(id);
+		// 画面遷移
+		return "redirect:/admin/items";
+	}
+	
 }
