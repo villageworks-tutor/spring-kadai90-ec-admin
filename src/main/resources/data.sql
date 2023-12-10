@@ -16,4 +16,6 @@ INSERT INTO items (category_id, name, price) VALUES (3, 'パズルゲーム', 78
 INSERT INTO items (category_id, name, price) VALUES (3, 'Invader Fighter', 3400);
 INSERT INTO items (category_id, name, price) VALUES (3, 'Play the BasketBall', 2200);
 
-
+-- 顧客テーブルData：：
+INSERT INTO customers (name, address, tel, email) VALUES('田中太郎', '東京', '090-1111-1111', 'tanaka@aaa.com');
+INSERT INTO customers (name, address, tel, email) VALUES('鈴木一郎', '大阪', '090-2222-222', 'suzuki@aaa.com');
